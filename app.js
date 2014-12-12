@@ -1,11 +1,16 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
+var body_parser = require('body-parser');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var db = require('./db_login.js');
 
+var db = require('./database.js');
+var mysql = require('mysql');
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+
+app.use(body_parser.urlencoded({ extended: false }));
 
 app.get('/', function (req,res) {
     res.render('index', {title: 'Steve\'s Blog', type: 'Home'});
@@ -25,16 +30,17 @@ app.get('/login', function (req,res) {
 });
 
 app.post('/db_login', function(req,res) {
-    console.log('RUNNING DB SCRIPT');
-    db.connect();
-    res.render('index', {title: 'Steve\'s Blog', type: 'Home'});
+    var username = req.param('username');
+    var password = req.param('password');
+    console.log('UN: ' + username + ' - PW: ' + password);
+    db.signUp(username, password);
+    res.redirect('/');
 });
 
 
 
 
-http.listen(3000, function() {
-    
+http.listen(process.env.PORT || 3000, function() {
     console.log('Example app listening at 3000');
 });
 
