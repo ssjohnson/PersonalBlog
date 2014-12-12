@@ -9,25 +9,21 @@ var connection = mysql.createConnection({
 
 
 var query = function query(sql) {
-    connection.connect();
     connection.query(sql, function(err, rows, fields) {
         if(err) throw err;
         console.log(rows[0]);
     });
-    connection.end();
 };
 
-var signUp = function signUp(username, password) {
+var signUp = function signUp(connection, username, password) {
     //var select = 'SELECT * FROM users';
     //query(select);
     var values = [username, password];
-    connection.connect();
     connection.query('INSERT INTO users SET username = ?, password = ?', values, 
                      function(err, results) {
                         if (err) throw err;
                         else console.log(results);
     });
-    connection.end();
 };
 
 exports.connection = connection;

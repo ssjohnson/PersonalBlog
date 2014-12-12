@@ -13,6 +13,7 @@ app.set('view engine', 'jade');
 app.use(body_parser.urlencoded({ extended: false }));
 
 app.get('/', function (req,res) {
+    db.connection.connect();
     res.render('index', {title: 'Steve\'s Blog', type: 'Home'});
 });
 
@@ -33,7 +34,7 @@ app.post('/db_login', function(req,res) {
     var username = req.param('username');
     var password = req.param('password');
     console.log('UN: ' + username + ' - PW: ' + password);
-    db.signUp(username, password);
+    db.signUp(connection, username, password);
     res.redirect('/');
 });
 
