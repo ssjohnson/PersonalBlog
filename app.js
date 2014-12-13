@@ -4,46 +4,48 @@ var body_parser = require('body-parser');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var routes = require('./routes/routes.js');
+
+//DATABASE
+
 var db = require('./database.js');
 var mysql = require('mysql');
+var connection = require('express-myconnection');
+
+app.use(connection(mysql, {
+    host: 'sql5.freesqldatabase.com',
+    database: 'sql561108',
+    user: 'sql561108',
+    password: 'aU9%eQ4!'
+    }, 'single')
+);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
-app.use(body_parser.urlencoded({ extended: false }));
+var parser = body_parser.urlencoded({ extended: false });
 
-app.get('/', function (req,res) {
-    db.connection.connect();
-    res.render('index', {title: 'Steve\'s Blog', type: 'Home'});
-});
+app.use(parser);
+//ROUTES
 
-app.get('/about', function (req,res) {
-    res.render('about', {title: 'Steve\'s Blog', type: 'About Me'});
-});
+app.get('/', routes.index);
 
-app.get('/contact', function (req,res) {
-    res.render('contact', {title: 'Steve\'s Blog', type: 'Contact Me', 
-    email: 'ssjohnson1990@gmail.com', number:'9178437979'});
-});
+app.get('/about', routes.about);
 
-app.get('/login', function (req,res) {
-    res.render('login', {title: 'Steve\'s Blog', type: 'Login'});
-});
+app.get('/contact', routes.contact);
 
-app.post('/db_login', function(req,res) {
-    var username = req.param('username');
-    var password = req.param('password');
-    console.log('UN: ' + username + ' - PW: ' + password);
-    db.signUp(connection, username, password);
-    res.redirect('/');
-});
+app.get('/login', routes.login);
+
+app.post('/db_login', routes.db_login);
 
 
-
+//START SERVER
 
 http.listen(process.env.PORT || 3000, function() {
     console.log('Example app listening at 3000');
 });
+
+//SOCKET.IO
 
 io.on('connection', function(socket) {
     console.log('USER CONNECTED');

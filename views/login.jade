@@ -1,10 +1,10 @@
 html
     include ./includes/head.jade
     body
-        form(id="loginform" action="/db_login" method="post")
+        form(id="loginform" action="/db_login" method="POST")
             p Username: &nbsp &nbsp
                 input(type="text" id="username", size="50", name="username")
             p Password: &nbsp &nbsp
                 input(type="password" id="password" size="50" name="password")
             p
-                input(type="submit", id="submit" value="Submit")
+                input(type="submit" id="submit" value="Submit")
