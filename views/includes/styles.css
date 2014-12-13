@@ -1,0 +1,12 @@
+.navbarlink {
+    margin:100px;
+    font-style: bold;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.navbar {
+    align-items:center;
+    background-image: url("images/navBarBackground.png");
+    width:1900px;
+    height:100px;
+}

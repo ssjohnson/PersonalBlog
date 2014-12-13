@@ -18,20 +18,19 @@ exports.login = function (req,res) {
 };
 
 exports.db_login = function(req,res) {     
-        var username = req.param('username');
-        var password = req.param('password');
-        console.log('UN: ' + username + ' - PW: ' + password);
+    var username = req.param('username');
+    var password = req.param('password');
+    console.log('UN: ' + username + ' - PW: ' + password);
         
-        var values = [username, password];
-        req.getConnection(function (err, connection) {
-            connection.query('INSERT INTO users SET username = ?, password = ?', values, 
-                     function(err, results) {
-                        if (err) throw err;
-                        else console.log(results);
-                    }
-            );
-        });
-            
-    
-        res.redirect('/');
+    var values = [username, password];
+    req.getConnection(function (err, connection) {
+        connection.query('INSERT INTO users SET username = ?, password = ?', values, 
+             function(err, results) {
+                if (err) throw err;
+                else console.log(results);
+            }
+        );
+    });
+                
+    res.redirect('/');
 };

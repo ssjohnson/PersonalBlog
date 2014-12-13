@@ -8,7 +8,6 @@ var routes = require('./routes/routes.js');
 
 //DATABASE
 
-var db = require('./database.js');
 var mysql = require('mysql');
 var connection = require('express-myconnection');
 
