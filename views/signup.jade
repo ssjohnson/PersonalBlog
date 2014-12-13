@@ -1,0 +1,16 @@
+html
+    style
+        include ./includes/styles.css
+    include ./includes/head.jade
+    body
+        form(id="loginform" action="/sign_up" method="POST")
+            p Username: <br />
+                input(type="text" id="username", size="50", name="username")
+            p Password: <br />
+                input(type="password" id="password" size="50" name="password")
+            p Confirm Password: <br />
+                input(type="password" id="password" size="50" name="password-confirm")
+
+            p
+                input(type="submit" id="submit" value="Submit")
+                a(href="/signup" class="navbarlink") Not A Member?

@@ -19,6 +19,31 @@ app.use(connection(mysql, {
     }, 'single')
 );
 
+//PASSPORT
+
+var express-session = require('express-session');
+var passport = require('passport');
+app.use(expressSession());
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use('login', new LocalStrategy({
+        passReqToCallback: true;
+    }, 
+    function (req, username, password, done) {
+        req.getConnection(function (err, connection) {
+            connection.query('SELECT * FROM users WHERE username = ? AND password = ?', 
+                values, 
+                function(err, results) {
+                    if(results===null)
+                        
+                    
+                
+
+
+
+
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
