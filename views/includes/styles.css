@@ -6,7 +6,14 @@
 
 .navbar {
     align-items:center;
-    background-image: url("images/navBarBackground.png");
-    width:1900px;
-    height:100px;
+    background-image: url("/images/navbar-background.png") no-repeat;
+    background-size:100%:
+    width:100%;
+    height:20px;
 }
+
+.header {
+    font-family: Impact, Charcoal, sans-serif;
+    font-style: bold;
+}
+    

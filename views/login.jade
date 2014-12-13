@@ -1,10 +1,13 @@
 html
+    style
+        include ./includes/styles.css
     include ./includes/head.jade
     body
-        form(id="loginform" action="/db_login" method="POST")
-            p Username: &nbsp &nbsp
+        form(id="loginform" action="/sign_in" method="POST")
+            p Username: <br />
                 input(type="text" id="username", size="50", name="username")
-            p Password: &nbsp &nbsp
+            p Password: <br />
                 input(type="password" id="password" size="50" name="password")
             p
                 input(type="submit" id="submit" value="Submit")
+                a(href="/signup" class="navbarlink") Not A Member?

@@ -22,9 +22,9 @@ app.use(connection(mysql, {
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
-var parser = body_parser.urlencoded({ extended: false });
 
-app.use(parser);
+app.use(body_parser.urlencoded({ extended: false }));
+
 //ROUTES
 
 app.get('/', routes.index);
@@ -35,7 +35,11 @@ app.get('/contact', routes.contact);
 
 app.get('/login', routes.login);
 
-app.post('/db_login', routes.db_login);
+app.post('/sign_in', routes.sign_in);
+
+app.get('/signup' , routes.signup);
+
+app.post('/sign_up', routes.sign_up);
 
 
 //START SERVER
