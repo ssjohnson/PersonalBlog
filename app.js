@@ -19,13 +19,16 @@ app.use(connection(mysql, {
     }, 'single')
 );
 
-//PASSPORT
+/*
 
-var express-session = require('express-session');
+PASSPORT
+
+var express_session = require('express-session');
 var passport = require('passport');
-app.use(expressSession());
+app.use(express_session());
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 passport.use('login', new LocalStrategy({
         passReqToCallback: true;
@@ -38,7 +41,7 @@ passport.use('login', new LocalStrategy({
                     if(results===null)
                         
                     
-                
+*/             
 
 
 

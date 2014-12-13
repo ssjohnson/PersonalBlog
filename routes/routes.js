@@ -1,4 +1,5 @@
-var body_parser = require('body-parser');
+var bcrypt = require('bcrypt');
+var salt = bcrypt.genSaltSync(10);
 
 exports.index = function (req,res) {
     res.render('index', {title: 'Steve\'s Blog', type: 'Home'});
@@ -25,8 +26,10 @@ exports.sign_in = function(req,res) {
     var username = req.param('username');
     var password = req.param('password');
     console.log('UN: ' + username + ' - PW: ' + password);
+    
+    var hash = bcrypt.hashSync(password, salt);
         
-    var values = [username, password];
+    var values = [username, hash];
     req.getConnection(function (err, connection) {
         connection.query('SELECT * FROM users WHERE username = ? AND password = ?',     
                          values, 
@@ -48,8 +51,9 @@ exports.sign_up = function(req,res) {
     if(password === password_confirm) {
     
         console.log('UN: ' + username + ' - PW: ' + password);
-
-        var values = [username, password];
+        
+        var hash = bcrypt.hashSync(password, salt);
+        var values = [username, hash];
         req.getConnection(function (err, connection) {
             connection.query('INSERT INTO users SET username = ?, password = ?', values, 
                  function(err, results) {
