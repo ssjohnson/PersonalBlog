@@ -2,20 +2,20 @@ var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 
 exports.index = function (req,res) {
-    res.render('index', {title: 'Steve\'s Blog', type: 'Home'});
+    res.render('index', {title: 'Home', type: 'Home'});
 };
 
 exports.about = function (req,res) {
-    res.render('about', {title: 'Steve\'s Blog', type: 'About Me', user: "TEST"});
+    res.render('about', {title: 'About Me', type: 'About Me', user: "TEST"});
 };
 
 exports.contact = function (req,res) {
-    res.render('contact', {title: 'Steve\'s Blog', type: 'Contact Me', 
+    res.render('contact', {title: 'Contact Me', type: 'Contact Me', 
     data: {email: 'ssjohnson1990@gmail.com', number:'9178437979'}});
 };
 
 exports.login = function (req,res) {
-    res.render('login', {title: 'Steve\'s Blog', type: 'Login'});
+    res.render('login', {title: 'Login', type: 'Login'});
 };
 
 exports.signup = function (req,res) {

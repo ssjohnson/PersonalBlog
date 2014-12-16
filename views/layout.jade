@@ -8,6 +8,7 @@ html(lang='en')
         
         //Bootstrap CSS
         link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css', rel='stylesheet')
+        link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css' rel='stylesheet')
         
         script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
         script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
@@ -18,13 +19,13 @@ html(lang='en')
                     a.navbar-brand(href='/') Steve's Blog
                 .navbar-collapse.collapse
                     ul.nav.navbar-nav
-                        li
+                        li(class=title=='Home'?'active':undefined)
                             a(href='/') Home
-                        li.active
+                        li(class=title=='About Me'?'active':undefined)
                             a(href='/about') About
-                        li
+                        li(class=title=='Contact Me'?'active':undefined)
                             a(href='/contact') Contact Me
-                        li
+                        li(class=title=='Login'?'active':undefined)
                             a(href='/login') Login
         title #{title}
         .page-header    
@@ -32,12 +33,3 @@ html(lang='en')
         
     body
         block content
-        
-    script.
-        $('document').ready(function() {
-            var selector = '.nav.navbar-nav li';
-            $(selector).click(function() {
-               // $(selector).removeClass('active');
-                $(this).addClass('active');
-            });
-        });
