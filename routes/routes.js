@@ -6,7 +6,7 @@ exports.index = function (req,res) {
 };
 
 exports.about = function (req,res) {
-    res.render('about', {title: 'Steve\'s Blog', type: 'About Me'});
+    res.render('about', {title: 'Steve\'s Blog', type: 'About Me', user: "TEST"});
 };
 
 exports.contact = function (req,res) {

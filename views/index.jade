@@ -1,13 +1,12 @@
-extends ./head.jade
+extends ./layout.jade
     
 block content
     script(src='/socket.io/socket.io.js')
     script var socket = io();
-    p.
-        This is a test. This is a test. <br/>
-        This is a test. This is a test. <br/>
-        This is a test. This is a test. <br/>
-        This is a test. This is a test. <br/>
-        This is a test. This is a test. <br/>
-
-    
+    .container
+        p.
+            This is a test. This is a test. <br/>
+            This is a test. This is a test. <br/>
+            This is a test. This is a test. <br/>
+            This is a test. This is a test. <br/>
+            This is a test. This is a test. <br/>
