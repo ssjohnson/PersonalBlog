@@ -1,10 +1,8 @@
-html 
-    include ./includes/head.jade
-    body
-        p Contact Steve At:
+extends ./head.jade
+
+block content
+    p Contact Steve At:
         ul
-            li
-                #{email}
-            li 
-                #{number}
+            each item in data
+                li #{item}
     

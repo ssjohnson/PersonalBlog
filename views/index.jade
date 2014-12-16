@@ -1,14 +1,13 @@
-html
-    head
-        include ./includes/head.jade 
-        script(src='/socket.io/socket.io.js')
-        script var socket = io();
-    body
-        p.
-            This is a test. This is a test. <br/>
-            This is a test. This is a test. <br/>
-            This is a test. This is a test. <br/>
-            This is a test. This is a test. <br/>
-            This is a test. This is a test. <br/>
-        
+extends ./head.jade
+    
+block content
+    script(src='/socket.io/socket.io.js')
+    script var socket = io();
+    p.
+        This is a test. This is a test. <br/>
+        This is a test. This is a test. <br/>
+        This is a test. This is a test. <br/>
+        This is a test. This is a test. <br/>
+        This is a test. This is a test. <br/>
+
     

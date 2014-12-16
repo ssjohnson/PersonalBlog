@@ -1,13 +1,12 @@
-html
-    style
-        include ./includes/styles.css
-    include ./includes/head.jade
-    body
-        form(id="loginform" action="/sign_in" method="POST")
-            p Username: <br />
-                input(type="text" id="username", size="50", name="username")
-            p Password: <br />
-                input(type="password" id="password" size="50" name="password")
-            p
-                input(type="submit" id="submit" value="Submit")
-                a(href="/signup" class="navbarlink") Not A Member?
+extends ./head.jade
+
+block content
+    .container
+        form.form-signin(id="loginform" action="/sign_in" method="POST")
+            h2.form-signin-heading Please Sign In    
+            input.form-control(type="email" placeholder='Email Address' id="username", name="username", required)
+            br
+            input.form-control(type='password', id="password", placeholder='Password' name="password" required)
+            br
+            input.btn.btn-lg.btn-primary.btn-block(type="submit" id="submit" value="Submit")
+            a(href="/signup" class="navbarlink") Not A Member?

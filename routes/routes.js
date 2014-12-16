@@ -11,7 +11,7 @@ exports.about = function (req,res) {
 
 exports.contact = function (req,res) {
     res.render('contact', {title: 'Steve\'s Blog', type: 'Contact Me', 
-    email: 'ssjohnson1990@gmail.com', number:'9178437979'});
+    data: {email: 'ssjohnson1990@gmail.com', number:'9178437979'}});
 };
 
 exports.login = function (req,res) {
