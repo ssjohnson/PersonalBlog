@@ -19,7 +19,7 @@ exports.login = function (req,res) {
 };
 
 exports.signup = function (req,res) {
-    res.render('signup', {title: 'Steve\'s Blog', type: 'Sign Up'});
+    res.render('signup', {title: 'Sign Up', type: 'Sign Up'});
 };
 
 exports.sign_in = function(req,res) {     
@@ -48,7 +48,7 @@ exports.sign_up = function(req,res) {
     var password = req.param('password');
     var password_confirm = req.param('password-confirm');
     
-    if(password === password_confirm) {
+    if(password === password_confirm && check_user(username, req)) {
     
         console.log('UN: ' + username + ' - PW: ' + password);
         
@@ -69,3 +69,19 @@ exports.sign_up = function(req,res) {
         res.redirect('/about');
     }
 };
+
+function check_user(username, req) {
+    req.getConnection(function(err, connection) {
+        connection.query('SELECT * FROM users WHERE username = ?', username, 
+                         function(err, results) {
+                                if(!results.length) {
+                                    return false;
+                                }
+                                else {
+                                    console.log(results[0]);
+                                    return true;
+                                }
+                            });
+    });
+}
+                

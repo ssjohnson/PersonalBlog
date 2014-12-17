@@ -3,6 +3,7 @@ var app = express();
 var body_parser = require('body-parser');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var morgan = require('morgan');
 
 var routes = require('./routes/routes.js');
 
@@ -16,41 +17,27 @@ app.use(connection(mysql, {
     database: 'sql561108',
     user: 'sql561108',
     password: 'aU9%eQ4!'
-    }, 'single')
+    }, 'request')
 );
 
-/*
 
-PASSPORT
+
+//PASSPORT
 
 var express_session = require('express-session');
 var passport = require('passport');
-app.use(express_session());
+app.use(express_session({secret: 'ABCDEZ'}));
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-passport.use('login', new LocalStrategy({
-        passReqToCallback: true;
-    }, 
-    function (req, username, password, done) {
-        req.getConnection(function (err, connection) {
-            connection.query('SELECT * FROM users WHERE username = ? AND password = ?', 
-                values, 
-                function(err, results) {
-                    if(results===null)
-                        
-                    
-*/             
-
-
 
 
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
+app.use(morgan('dev'));
 
+app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: false }));
 
 //ROUTES
@@ -63,7 +50,7 @@ app.get('/contact', routes.contact);
 
 app.get('/login', routes.login);
 
-app.post('/sign_in', routes.sign_in);
+app.post('/login', routes.sign_in);
 
 app.get('/signup' , routes.signup);
 
