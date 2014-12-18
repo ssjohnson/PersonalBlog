@@ -2,24 +2,39 @@ var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 
 exports.index = function (req,res) {
-    res.render('index', {title: 'Home', type: 'Home'});
+    req.session.username = req.session.username || 'Anonoymous';
+    req.session.save();
+    console.log(req.session.username);
+    res.render('index', {title: 'Home', username: req.session.username});
 };
 
 exports.about = function (req,res) {
-    res.render('about', {title: 'About Me', type: 'About Me', user: "TEST"});
+    console.log(req.session.username);
+    res.render('about', {title: 'About Me', username: req.session.username});
 };
 
 exports.contact = function (req,res) {
-    res.render('contact', {title: 'Contact Me', type: 'Contact Me', 
-    data: {email: 'ssjohnson1990@gmail.com', number:'9178437979'}});
+    
+    console.log(req.session.username);
+    res.render('contact', {title: 'Contact Me',                                                                      username:req.session.username, 
+                           data: {
+                               email: 'ssjohnson1990@gmail.com', 
+                               number:'9178437979'
+                                }
+                          }
+              );
 };
 
 exports.login = function (req,res) {
-    res.render('login', {title: 'Login', type: 'Login'});
+    
+    console.log(req.session.username);
+    res.render('login', {title: 'Login', username:req.session.username});
 };
 
 exports.signup = function (req,res) {
-    res.render('signup', {title: 'Sign Up', type: 'Sign Up'});
+    
+    console.log(req.session.username);
+    res.render('signup', {title: 'Sign Up', username:req.session.username});
 };
 
 exports.sign_in = function(req,res) {     
@@ -27,20 +42,27 @@ exports.sign_in = function(req,res) {
     var password = req.param('password');
     console.log('UN: ' + username + ' - PW: ' + password);
     
-    var hash = bcrypt.hashSync(password, salt);
-        
-    var values = [username, hash];
+    var values = [username];
     req.getConnection(function (err, connection) {
-        connection.query('SELECT * FROM users WHERE username = ? AND password = ?',     
+        connection.query('SELECT * FROM users WHERE username = ?',     
                          values, 
-             function(err, results) {
-                if (err) throw err;
-                else console.log(results);
-            }
-        );
+                         function(err, results) {
+                            if (err) throw err;
+                            if(bcrypt.compareSync(password, results[0].password)) {
+                                console.log("MATCH: " + results);
+                                req.session.username = username;
+                                req.session.save();
+                                res.render('userpage', 
+                                           {title:'UserPage', 
+                                            username:req.session.username}
+                                          );
+                            }
+                            else {
+                                console.log("NO MATCH");
+                                res.redirect('/');
+                            }
+                        });
     });
-                
-    res.redirect('/');
 };
 
 exports.sign_up = function(req,res) {     
@@ -48,7 +70,7 @@ exports.sign_up = function(req,res) {
     var password = req.param('password');
     var password_confirm = req.param('password-confirm');
     
-    if(password === password_confirm && check_user(username, req)) {
+    if(password === password_confirm /* && check_user(username, req)*/) {
     
         console.log('UN: ' + username + ' - PW: ' + password);
         
@@ -63,6 +85,9 @@ exports.sign_up = function(req,res) {
             );
         });
 
+        req.session.username = username;
+        req.session.save();
+        
         res.redirect('/');
     }
     else {
@@ -70,18 +95,12 @@ exports.sign_up = function(req,res) {
     }
 };
 
-function check_user(username, req) {
-    req.getConnection(function(err, connection) {
-        connection.query('SELECT * FROM users WHERE username = ?', username, 
-                         function(err, results) {
-                                if(!results.length) {
-                                    return false;
-                                }
-                                else {
-                                    console.log(results[0]);
-                                    return true;
-                                }
-                            });
-    });
-}
+exports.userpage = function(req,res) {
+    res.render('userpage', {title:'UserPage', username:req.session.username});
+};
+
+exports.logout = function(req,res) {
+    req.session.destroy();
+    res.redirect('/');
+};
                 

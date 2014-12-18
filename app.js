@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 var body_parser = require('body-parser');
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
 var morgan = require('morgan');
 
+var config = require('./configurations/config.js');
 var routes = require('./routes/routes.js');
 
 //DATABASE
@@ -12,21 +12,27 @@ var routes = require('./routes/routes.js');
 var mysql = require('mysql');
 var connection = require('express-myconnection');
 
+console.log(config.database + " : " + config.host + " : " + config.password + " : " + config.user);
+
 app.use(connection(mysql, {
-    host: 'sql5.freesqldatabase.com',
-    database: 'sql561108',
-    user: 'sql561108',
-    password: 'aU9%eQ4!'
+    host: config.host,
+    database: config.database,
+    user: config.user,
+    password: config.password
     }, 'request')
 );
-
-
 
 //PASSPORT
 
 var express_session = require('express-session');
 var passport = require('passport');
-app.use(express_session({secret: 'ABCDEZ'}));
+var cookie_parser = require('cookie-parser');
+
+app.use(express_session({
+    secret: 'ABCDE',
+    resave: false,
+    saveUninitialized: true}));
+app.use(cookie_parser('ABCDE'));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -56,18 +62,13 @@ app.get('/signup' , routes.signup);
 
 app.post('/sign_up', routes.sign_up);
 
+app.get('/userpage', routes.userpage);
+
+app.get('/logout', routes.logout);
+
 
 //START SERVER
 
 http.listen(process.env.PORT || 3000, function() {
     console.log('Example app listening at 3000');
-});
-
-//SOCKET.IO
-
-io.on('connection', function(socket) {
-    console.log('USER CONNECTED');
-    socket.on('disconnect', function() {
-        console.log('USER DISCONNECTED');
-    });
 });

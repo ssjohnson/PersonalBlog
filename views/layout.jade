@@ -25,11 +25,22 @@ html(lang='en')
                             a(href='/about') About
                         li(class=title=='Contact Me'?'active':undefined)
                             a(href='/contact') Contact Me
-                        li(class=title=='Login'?'active':undefined)
-                            a(href='/login') Login
+                    ul.nav.navbar-nav.navbar-right
+                        if(username == 'Anonoymous')
+                            li(class=title=='Login'?'active':undefined)
+                                a(href='/login') Login
+                        else
+                            li(class=title=='UserPage'?'active':undefined)
+                                a(href='/userpage') User Page
+                            li
+                                a(href='/logout') Logout
         title #{title}
         .page-header    
-            h1(class="header") #{type}
+            h1(class="header") #{title}
         
     body
+        if (username == 'Anonoymous')
+            h4 Hello
+        else
+            h4 Hello #{username}
         block content
