@@ -22,12 +22,12 @@ Also, I removed Socket.io from the plugins I'm using. I may incorporate a chatro
 
 TODO List: 
 
-Database Stuff: ORM, Design, Pretty Much Everything in between
-Figure out how to post these blogs
-body layout
-a ton more other stuff.
-Passport for outside auth, for the hell of it.
-I should probably scaffold the file system a little better too.
+Database Stuff: ORM, Design, Pretty Much Everything in between  
+Figure out how to post these blogs  
+body layout  
+a ton more other stuff.  
+Passport for outside auth, for the hell of it.  
+I should probably scaffold the file system a little better too.  
 
 
 Oh, and I got the sessions working today too (redundancy ftw). That was easy though.
