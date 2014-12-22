@@ -21,6 +21,8 @@ html(lang='en')
                     ul.nav.navbar-nav
                         li(class=title=='Home'?'active':undefined)
                             a(href='/') Home
+                        li(class=title=='Blog'?'active':undefined)
+                            a(href='/blog') Blog
                         li(class=title=='About Me'?'active':undefined)
                             a(href='/about') About
                         li(class=title=='Contact Me'?'active':undefined)
@@ -40,7 +42,6 @@ html(lang='en')
         
     body
         if (username == 'Anonoymous')
-            h4 Hello
         else
             h4 Hello #{username}
         block content

@@ -4,7 +4,6 @@ var salt = bcrypt.genSaltSync(10);
 exports.index = function (req,res) {
     req.session.username = req.session.username || 'Anonoymous';
     req.session.save();
-    console.log(req.session.username);
     res.render('index', {title: 'Home', username: req.session.username});
 };
 
@@ -44,22 +43,25 @@ exports.sign_in = function(req,res) {
     
     var values = [username];
     req.getConnection(function (err, connection) {
-        connection.query('SELECT * FROM users WHERE username = ?',     
+        connection.query('SELECT * FROM userlist WHERE username = ?',     
                          values, 
                          function(err, results) {
                             if (err) throw err;
-                            if(bcrypt.compareSync(password, results[0].password)) {
-                                console.log("MATCH: " + results);
-                                req.session.username = username;
-                                req.session.save();
-                                res.render('userpage', 
-                                           {title:'UserPage', 
-                                            username:req.session.username}
-                                          );
-                            }
+                            if (results.length == 0) res.redirect('/');
                             else {
-                                console.log("NO MATCH");
-                                res.redirect('/');
+                                if(bcrypt.compareSync(password, results[0].password)) {
+                                    console.log("MATCH: " + results);
+                                    req.session.username = username;
+                                    req.session.save();
+                                    res.render('userpage', 
+                                               {title:'UserPage', 
+                                                username:req.session.username}
+                                              );
+                                }
+                                else {
+                                    console.log("NO MATCH");
+                                    res.redirect('/');
+                                }
                             }
                         });
     });
@@ -68,6 +70,8 @@ exports.sign_in = function(req,res) {
 exports.sign_up = function(req,res) {     
     var username = req.param('username');
     var password = req.param('password');
+    var firstname = req.param('firstname');
+    var lastname = req.param('lastname');
     var password_confirm = req.param('password-confirm');
     
     if(password === password_confirm /* && check_user(username, req)*/) {
@@ -75,9 +79,10 @@ exports.sign_up = function(req,res) {
         console.log('UN: ' + username + ' - PW: ' + password);
         
         var hash = bcrypt.hashSync(password, salt);
-        var values = [username, hash];
+        var values = [username, hash, firstname, lastname];
         req.getConnection(function (err, connection) {
-            connection.query('INSERT INTO users SET username = ?, password = ?', values, 
+            connection.query('INSERT INTO userlist SET username = ?, password = ?, firstname = ?, lastname = ?', 
+                 values, 
                  function(err, results) {
                     if (err) throw err;
                     else console.log(results);
@@ -88,7 +93,7 @@ exports.sign_up = function(req,res) {
         req.session.username = username;
         req.session.save();
         
-        res.redirect('/');
+        res.redirect('/userpage');
     }
     else {
         res.redirect('/about');

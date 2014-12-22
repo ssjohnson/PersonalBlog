@@ -4,6 +4,10 @@ block content
     .container
         form.form-horizontal(id="loginform" action="/sign_up" method="POST")
             h2.form-signup-heading Please Fill The Form Below
+            input.form-control(type="text" placeholder='First Name' id="firstname", name="firstname", required)
+            br
+            input.form-control(type="text" placeholder='Last Name' id="lastname", name="lastname", required)
+            br
             input.form-control(type="email" placeholder='Email Address' id="username", name="username", required)
             br
             input.form-control(type="password" id="password" name="password" placeholder="Password" required)

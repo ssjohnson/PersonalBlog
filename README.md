@@ -28,7 +28,7 @@ body layout
 a ton more other stuff.  
 Passport for outside auth, for the hell of it.  
 I should probably scaffold the file system a little better too.  
-
+Redis for Session storage?  
 
 Oh, and I got the sessions working today too (redundancy ftw). That was easy though.
 

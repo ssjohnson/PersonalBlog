@@ -1,8 +1,8 @@
 module.exports = {
     "callback-url" : "http://localhost:3000",
     "use-database" : "true",
-    "host" : "sql5.freesqldatabase.com",
-    "database" : "sql561108",
-    "user" : "sql561108",
-    "password" : "aU9%eQ4!"
+    "host" : "localhost", //"sql5.freesqldatabase.com",
+    "database" : "expresspj", //"sql561108",
+    "user" : "root",
+    "password" : "lemons57"
 }

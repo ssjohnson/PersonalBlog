@@ -4,6 +4,8 @@ var body_parser = require('body-parser');
 var http = require('http').Server(app);
 var morgan = require('morgan');
 
+//LOCAL FILES
+
 var config = require('./configurations/config.js');
 var routes = require('./routes/routes.js');
 
@@ -11,8 +13,6 @@ var routes = require('./routes/routes.js');
 
 var mysql = require('mysql');
 var connection = require('express-myconnection');
-
-console.log(config.database + " : " + config.host + " : " + config.password + " : " + config.user);
 
 app.use(connection(mysql, {
     host: config.host,
@@ -22,7 +22,7 @@ app.use(connection(mysql, {
     }, 'request')
 );
 
-//PASSPORT
+//PASSPORT 
 
 var express_session = require('express-session');
 var passport = require('passport');
@@ -36,13 +36,14 @@ app.use(cookie_parser('ABCDE'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
+//VIEW ENGINE
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
+//WILL LOG EVERY REQUEST SENT TO SERVER
 app.use(morgan('dev'));
 
+//BP TO GET DATA FROM POSTS
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: false }));
 
