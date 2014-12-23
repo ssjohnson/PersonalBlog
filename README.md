@@ -54,4 +54,10 @@ I'm getting a validation error from sequelize. I'm going to track it down before
 
 More to come this evening still! (Maybe. It's 1:21 AM EST Folks.)
 
+-----------------------------------------------------------------
+
+3AM : Got sequelize signup to work. Could not get login to work. 
+
+Too Tired. Until tommorrow, anyone who cares enough to read this.
+
 --SSJ

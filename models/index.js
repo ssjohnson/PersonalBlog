@@ -1,17 +1,18 @@
 var Sequelize = require('sequelize'); 
-var config = require(__BASEDIR + '/configurations/config.js');
+var config = require('../configurations/config.js');
 
 var sequelize = new Sequelize(config.database, config.user, config.password, {
     host: config.host,
     port: config.port,
-    dialect: config.dialect
+    dialect: config.dialect,
+    omitNull: true
 });
 
 //AUTHENTICATE CONNECTION
 
 sequelize.authenticate().complete(function(err) { 
-    if(err) throw err;
-    else console.log("CONNECTION ESTABLISHED");
+    if(err){ throw err;}
+    else {console.log("CONNECTION ESTABLISHED");}
 });
 
 var models = [
@@ -28,10 +29,12 @@ models.forEach(function(model) {
     m.User.hasMany(m.Post);
 })(module.exports);
 
-sequelize.sync({force:true}).complete(function (err) {
+module.exports.sequelize = sequelize;
+
+module.exports.init = function(sequelize) {
+    sequelize.sync({force:false}).complete(function (err) {
     if (err) throw err;
     else console.log("TABLES CREATED");
 });
-
-module.exports.sequelize = sequelize;
+};
     

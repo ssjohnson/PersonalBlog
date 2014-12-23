@@ -5,6 +5,7 @@ var app = express();
 var body_parser = require('body-parser');
 var http = require('http').Server(app);
 var morgan = require('morgan');
+var models = require('./models');
 
 //LOCAL CONFIG FILES
 
@@ -40,16 +41,6 @@ app.use(cookie_parser('ABCDE'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.set('models', require('./models'));
-
-var User = app.get('models').User;
-
-var user = User.build({ id: 19, username: "test@test", password: "test", firstName: "test", lastName: "test" });
-
-user.save().complete(function (err) {
-    if(err) throw err;
-    else console.log("DATA SUCCESSFULLY INSERTED");
-});
-
 
 //WILL LOG EVERY REQUEST SENT TO SERVER
 app.use(morgan('dev'));
@@ -95,3 +86,33 @@ app.use('/', router);
 http.listen(process.env.PORT || 3000, function() {
     console.log('Example app listening at 3000');
 });
+
+exports.app = app;
+
+
+
+
+
+
+
+
+
+
+
+/****************************************************************************
+CGY:
+
+CREATE USER IN SEQUELIZE: 
+
+var User = app.get('models').User;
+
+var user = User.build({ username: "test1@test1", password: "test", firstname: "test", lastname: "test" });
+
+console.log(user);
+
+user.save().complete(function (err) {
+    if(err) throw err;
+    else console.log("DATA SUCCESSFULLY INSERTED");
+});
+
+******************************************************************************/

@@ -1,3 +1,4 @@
+
 var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
 
@@ -21,16 +22,9 @@ exports.route = {
 
                 var hash = bcrypt.hashSync(password, salt);
                 var values = [username, hash, firstname, lastname];
-                req.getConnection(function (err, connection) {
-                    connection.query('INSERT INTO userlist SET username = ?, password = ?, firstname = ?, lastname = ?', 
-                         values, 
-                         function(err, results) {
-                            if (err) throw err;
-                            else console.log(results);
-                        }
-                    );
-                });
-
+                
+                insert_user(username, hash, firstname, lastname);
+                
                 req.session.username = username;
                 req.session.save();
 
@@ -40,4 +34,17 @@ exports.route = {
                 res.redirect('/about');
             }
         }
+}
+
+function insert_user (username, hash, firstname, lastname) {
+    var User = require('../models').User;
+
+    var user = User.build({ username: username, password: hash, firstname: firstname, lastname: lastname });
+
+    console.log(user);
+
+    user.save().complete(function (err) {
+        if(err) throw err;
+        else console.log("DATA SUCCESSFULLY INSERTED");
+    });
 }
