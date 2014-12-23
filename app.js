@@ -1,18 +1,19 @@
+global.__BASEDIR = __dirname + '/';
+
 var express = require('express');
 var app = express();
 var body_parser = require('body-parser');
 var http = require('http').Server(app);
 var morgan = require('morgan');
 
-//LOCAL FILES
+//LOCAL CONFIG FILES
 
 var config = require('./configurations/config.js');
-var routes = require('./routes/routes.js');
-
 
 //DATABASE
 
 var mysql = require('mysql');
+/*
 var connection = require('express-myconnection');
 
 app.use(connection(mysql, {
@@ -22,11 +23,11 @@ app.use(connection(mysql, {
     password: config.password
     }, 'request')
 );
+*/
 
-//PASSPORT 
+//SESSIONS
 
 var express_session = require('express-session');
-var passport = require('passport');
 var cookie_parser = require('cookie-parser');
 
 app.use(express_session({
@@ -34,12 +35,21 @@ app.use(express_session({
     resave: false,
     saveUninitialized: true}));
 app.use(cookie_parser('ABCDE'));
-app.use(passport.initialize());
-app.use(passport.session());
 
-//VIEW ENGINE
+//VIEW ENGINE & MODELS
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+app.set('models', require('./models'));
+
+var User = app.get('models').User;
+
+var user = User.build({ id: 19, username: "test@test", password: "test", firstName: "test", lastName: "test" });
+
+user.save().complete(function (err) {
+    if(err) throw err;
+    else console.log("DATA SUCCESSFULLY INSERTED");
+});
+
 
 //WILL LOG EVERY REQUEST SENT TO SERVER
 app.use(morgan('dev'));

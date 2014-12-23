@@ -10,6 +10,8 @@ So: 2 Options here:
 MongoDB - Use mongoose and passport to authenticate.
 MySQL - Figure out how to authenticate using MySQL and res.connection. I will probably do this.
 
+--SSJ
+
 12/17/14 - 
 
 ###I did not mongo.
@@ -32,6 +34,8 @@ Redis for Session storage?
 
 Oh, and I got the sessions working today too (redundancy ftw). That was easy though.
 
+--SSJ
+
 *12/22/14*
 
 ###Routes, Routes, Routes
@@ -41,5 +45,13 @@ So, I took a few days off this weekend. Christmas is coming and I had some other
 At least its all easy to find now, eh? There is probably a better way to do it than storing each action as a JSON element, but it works for now. 
 
 More to come this evening.
+
+----------------------------------------------------------------
+
+So, I decided to use Sequelize for my ORM today. Getting it working is a bit of a pain so far, but I think it's actually coming along pretty well (so far). It works pretty niftily, takes a lot of me writing SQL queries out of it, although that definately would have been faster at this point I reckon. 
+
+I'm getting a validation error from sequelize. I'm going to track it down before I go to sleep preferably. I think I'll shower first though.
+
+More to come this evening still! (Maybe. It's 1:21 AM EST Folks.)
 
 --SSJ
