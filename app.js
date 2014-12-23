@@ -9,6 +9,7 @@ var morgan = require('morgan');
 var config = require('./configurations/config.js');
 var routes = require('./routes/routes.js');
 
+
 //DATABASE
 
 var mysql = require('mysql');
@@ -47,26 +48,37 @@ app.use(morgan('dev'));
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({ extended: false }));
 
-//ROUTES
+//ROUTER
 
-app.get('/', routes.index);
+var router = express.Router();
 
-app.get('/about', routes.about);
+var index = require('./routes/index.js');
+var about = require('./routes/about.js');
+var contact = require('./routes/contact.js');
+var login = require('./routes/login.js');
+var signup = require('./routes/signup.js');
+var userpage = require('./routes/userpage.js');
+var logout = require('./routes/logout.js');
 
-app.get('/contact', routes.contact);
+router.get('/', index.route);
 
-app.get('/login', routes.login);
+router.get('/about', about.route.get);
 
-app.post('/login', routes.sign_in);
+router.get('/contact', contact.route.get);
 
-app.get('/signup' , routes.signup);
+router.get('/login', login.route.get);
 
-app.post('/sign_up', routes.sign_up);
+router.post('/login', login.route.post);
 
-app.get('/userpage', routes.userpage);
+router.get('/signup' , signup.route.get);
 
-app.get('/logout', routes.logout);
+router.post('/signup', signup.route.post);
 
+router.get('/userpage', userpage.route.get);
+
+router.get('/logout', logout.route.get);
+
+app.use('/', router);
 
 //START SERVER
 

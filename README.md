@@ -32,4 +32,14 @@ Redis for Session storage?
 
 Oh, and I got the sessions working today too (redundancy ftw). That was easy though.
 
+*12/22/14*
+
+###Routes, Routes, Routes
+
+So, I took a few days off this weekend. Christmas is coming and I had some other stuff to take care of. SO, when I got back to it, I popped open my routes.js file and decided to split it into several different files, one each for the possible route URL's, combining all the CRUD methods needed for each.
+
+At least its all easy to find now, eh? There is probably a better way to do it than storing each action as a JSON element, but it works for now. 
+
+More to come this evening.
+
 --SSJ
