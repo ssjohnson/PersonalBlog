@@ -4,7 +4,7 @@ module.exports = {
     "host" : "localhost", //"sql5.freesqldatabase.com",
     "database" : "expresspj", //"sql561108",
     "user" : "root",
-    "password" : "lemons57",
+    "password" : "password",
     "port" : "3306",
     "dialect": "mysql"
 }
