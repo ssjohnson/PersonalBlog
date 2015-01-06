@@ -1,8 +1,7 @@
 #First Attempt At Web App Using Express, Node.js, Jade, Socket.io, & more to come.
 
-12/16/14 - 
-
 ###To Mongo Or Not To Mongo, This Is The Question
+######12/16/14
 
 I should probably figure out authentication first. It shouldn't be too difficult, granted I am sitting next to "Impractical Jokers" blasting out of a soundbar && A and K speaking loudly across from me (as always). Business as usual around here.
 
@@ -12,9 +11,9 @@ MySQL - Figure out how to authenticate using MySQL and res.connection. I will pr
 
 --SSJ
 
-12/17/14 - 
-
 ###I did not mongo.
+######12/17/14
+
 
 And this, made me happy. Finally got the authentication to work. Note to self: read documentation before using new plugins. I was trying to compare two hashes with bcrypt, when bcrypt only allows you to compare a string to a hash. Whomp whomp whomp. Only took me a little while to figure it out with a fresh mind.
 
@@ -36,9 +35,9 @@ Oh, and I got the sessions working today too (redundancy ftw). That was easy tho
 
 --SSJ
 
-*12/22/14*
-
 ###Routes, Routes, Routes
+######12/22/14
+
 
 So, I took a few days off this weekend. Christmas is coming and I had some other stuff to take care of. SO, when I got back to it, I popped open my routes.js file and decided to split it into several different files, one each for the possible route URL's, combining all the CRUD methods needed for each.
 
@@ -59,5 +58,16 @@ More to come this evening still! (Maybe. It's 1:21 AM EST Folks.)
 3AM : Got sequelize signup to work. Could not get login to work. 
 
 Too Tired. Until tommorrow, anyone who cares enough to read this.
+
+###I'm Back
+######1/6/15
+
+As stated above I'm back. The holidays passed, I had some family stuff going on, and a friend was in from out of town so I haven't had much time to work on this. So I took some time to get back at it today.
+
+Got the Login to work. Changed up how I was handling the callback functions. 
+
+That might be all for tonight, but I'll probably do some research before bed. Maybe add a destroy account function, but that's the most.
+
+Back at it again tomorrow. 
 
 --SSJ

@@ -12,38 +12,34 @@ exports.route = {
         function(req,res) {     
             var username = req.param('username');
             var password = req.param('password');
-            console.log('UN: ' + username + ' - PW: ' + password);
-
             var values = [username];
-            var userFromDb = getUserFromDb(username);
             
-            console.log(userFromDb.password);
+            console.log('UN: ' + username + ' - PW: ' + password);
             
-            if(bcrypt.compareSync(password, userFromDb.password)) {
-                console.log("MATCH: " + results);
-                req.session.username = username;
-                req.session.save();
-                res.render('userpage', 
-                           { title:'UserPage', username:req.session.username });
-            }
-            else {
-                console.log("NO MATCH");
-                res.redirect('/');
-            }
-    }
-}
-
-function getUserFromDb(username) {
-    var User = require('../models').User;
-    var user = User
+            var User_model = require('../models').User;
+            
+            var user = User_model
                     .find({ where: { username: username } })
                     .complete( function(err, result) {
                         if (err) throw err;
-                        else console.log("USER: " + result.username);
+                        else {
+                            console.log("USER: " + result.username);
+                            if(bcrypt.compareSync(password, result.password)) {
+                                console.log("MATCH: " + result);
+                                req.session.username = username;
+                                req.session.save();
+                                res.render('userpage', 
+                                    { title:'UserPage', username:req.session.username });
+                            }
+                            else 
+                            {
+                                console.log("NO MATCH");
+                                res.redirect('/');
+                            }
+                        }
                     });
-    return user;
+        }
 }
-
 
 /***********************************************************************
 CGY
