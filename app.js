@@ -60,8 +60,12 @@ var login = require('./routes/login.js');
 var signup = require('./routes/signup.js');
 var userpage = require('./routes/userpage.js');
 var logout = require('./routes/logout.js');
+var blog = require('./routes/blog.js');
+var newblog = require('./routes/newblog.js');
 
 router.get('/', index.route);
+
+router.get('/blog', blog.route.get);
 
 router.get('/about', about.route.get);
 
@@ -78,6 +82,8 @@ router.post('/signup', signup.route.post);
 router.get('/userpage', userpage.route.get);
 
 router.get('/logout', logout.route.get);
+
+router.get('/newblog', newblog.route.get);
 
 app.use('/', router);
 

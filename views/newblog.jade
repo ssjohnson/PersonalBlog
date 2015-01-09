@@ -1,0 +1,9 @@
+extends ./layout.jade
+
+block content
+    .container.centered
+        form.form-horizontal(id="newBlogForm")
+            .form-group
+                input.form-control(type="text" id="blogTitle" name="blogTitle" placeholder="Blog Title")
+                textarea.form-control(id="newBlogText" cols="250" rows="30")
+                

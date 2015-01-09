@@ -1,19 +1,4 @@
-.navbarlink {
-    margin:100px;
-    font-style: bold;
-    font-family: Impact, Charcoal, sans-serif;
-}
-
-.navbar {
-    align-items:center;
-    background-image: url("/images/navbar-background.png") no-repeat;
-    background-size:100%:
-    width:100%;
-    height:20px;
-}
-
-.header {
-    font-family: Impact, Charcoal, sans-serif;
-    font-style: bold;
+.title-padding {
+    padding-left: 150px;
 }
     

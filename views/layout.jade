@@ -6,6 +6,8 @@ html(lang='en')
         meta(name='author', content='Steve')
         link(rel='icon', href='/includes/images/favicon.ico')
         
+        style 
+            include ./includes/styles.css
         //Bootstrap CSS
         link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css', rel='stylesheet')
         link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css' rel='stylesheet')
@@ -36,12 +38,13 @@ html(lang='en')
                                 a(href='/userpage') User Page
                             li
                                 a(href='/logout') Logout
-        title #{title}
-        .page-header    
-            h1(class="header") #{title}
         
     body
-        if (username == 'Anonoymous')
-        else
-            h4 Hello #{username}
-        block content
+        .container-fluid
+            title #{title}
+            .page-header    
+                h1(class="header") #{title}
+            if (username == 'Anonoymous')
+            else
+                h4 Hello #{username}
+            block content
