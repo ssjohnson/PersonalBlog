@@ -2,4 +2,8 @@ extends ./layout.jade
 
 block content
     .container
-        p This is where the blogs will go.
+        each post in posts 
+            .container
+                h3 #{post.title}
+                hr
+                p #{post.text}

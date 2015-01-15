@@ -26,10 +26,15 @@ exports.route = {
                             console.log("USER: " + result.username);
                             if(bcrypt.compareSync(password, result.password)) {
                                 console.log("MATCH: " + result);
-                                req.session.username = username;
+                                req.session.user = result;
+                                req.session.username = req.session.user.username;
                                 req.session.save();
                                 res.render('userpage', 
-                                    { title:'UserPage', username:req.session.username });
+                                    { 
+                                        title:'UserPage', 
+                                        username:req.session.username,
+                                        user: req.session.user  
+                                    });
                             }
                             else 
                             {

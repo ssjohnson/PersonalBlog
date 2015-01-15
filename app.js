@@ -85,6 +85,8 @@ router.get('/logout', logout.route.get);
 
 router.get('/newblog', newblog.route.get);
 
+router.post('/newblog', newblog.route.post);
+
 app.use('/', router);
 
 //START SERVER

@@ -70,4 +70,24 @@ That might be all for tonight, but I'll probably do some research before bed. Ma
 
 Back at it again tomorrow. 
 
+###Back....Again
+#######1/14/15
+
+So, it's been a while one or two people who read this page (thats including me). I've been in and out lately. Haven't had much time and lost some motivation here, but I'm right back at it again (shoutout ADTR) now. 
+
+Got the entire blog system up and running. By that I mean that I can add blogs from a user account. Any user account for now. 
+
+Ill probably proceed to work on the blog page layout for the rest of the night.
+
+Updated TODO: 
+
+Finish setting up REST API
+    PUT / DELETE REQUESTS  
+Blog Layout  
+    Button at bottom to load additional blogs
+Improve file structure
+Angular? seems like it could work with this, but it seems like a serious undertaking. Im not ready to rip this guy down just yet.  
+    
+etc. etc. Ill remember more as the day goes on. 
+
 --SSJ
