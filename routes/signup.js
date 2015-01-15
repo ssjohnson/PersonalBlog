@@ -23,9 +23,10 @@ exports.route = {
                 var hash = bcrypt.hashSync(password, salt);
                 var values = [username, hash, firstname, lastname];
                 
-                insert_user(username, hash, firstname, lastname);
+                var user = insert_user(username, hash, firstname, lastname);
                 
                 req.session.username = username;
+                req.session.user = user;
                 req.session.save();
 
                 res.redirect('/userpage');
@@ -47,4 +48,6 @@ function insert_user (username, hash, firstname, lastname) {
         if(err) throw err;
         else console.log("DATA SUCCESSFULLY INSERTED");
     });
+    
+    return user;
 }

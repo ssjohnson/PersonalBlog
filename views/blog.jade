@@ -2,8 +2,12 @@ extends ./layout.jade
 
 block content
     .container
-        each post in posts 
-            .container
-                h3 #{post.title}
-                hr
-                p #{post.text}
+        if (posts)
+            each post in posts 
+                .container
+                    h3 #{post.title}
+                    h5.text-right #{post.author}
+                    hr
+                    p #{post.text}
+        else 
+            p "No Posts To Show"

@@ -15,11 +15,12 @@ exports.route = {
             Post_Model.create({
                 title: req.param('blogTitle'),
                 text: req.param('blogText'),
-                UserId: req.session.user.id
+                UserId: req.session.user.id,
+                author: req.session.user.username
             }).success(function() {
                 console.log("Successfully Added!");
+            }).complete(function(){ 
+                res.redirect('/blog');
             });
-        
-            res.redirect('/blog');
         }
 }
