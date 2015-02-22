@@ -91,3 +91,12 @@ Angular? seems like it could work with this, but it seems like a serious underta
 etc. etc. Ill remember more as the day goes on. 
 
 --SSJ
+
+###Back Again.....Jay's Back
+######2/21/15
+
+Hello Again, internets.  
+I've been MIA for a month+. For a few reasons actually. My depression kicked up a little bit, I've been busy with Anna 2 weekends of the time, and I've been trying to be a little better at work.  
+So, today I got the new blog post page to enter line breaks. JQuery ftw! Took me a little while since I'm a bit out of practice, but we're getting there.  
+  
+Gonna keep working tonight and we'll see where I get.
