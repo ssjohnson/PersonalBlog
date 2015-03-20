@@ -14,17 +14,6 @@ var config = require('./configurations/config.js');
 //DATABASE
 
 var mysql = require('mysql');
-/*
-var connection = require('express-myconnection');
-
-app.use(connection(mysql, {
-    host: config.host,
-    database: config.database,
-    user: config.user,
-    password: config.password
-    }, 'request')
-);
-*/
 
 //SESSIONS
 
@@ -62,6 +51,7 @@ var userpage = require('./routes/userpage.js');
 var logout = require('./routes/logout.js');
 var blog = require('./routes/blog.js');
 var newblog = require('./routes/newblog.js');
+var user = require('./routes/user.js');
 
 router.get('/', index.route);
 
@@ -87,6 +77,8 @@ router.get('/newblog', newblog.route.get);
 
 router.post('/newblog', newblog.route.post);
 
+router.get('/user/:userId', user.route.get);
+
 app.use('/', router);
 
 //START SERVER
@@ -96,28 +88,3 @@ http.listen(process.env.PORT || 3000, function() {
 });
 
 exports.app = app;
-
-
-
-
-
-
-
-
-/****************************************************************************
-CGY:
-
-CREATE USER IN SEQUELIZE: 
-
-var User = app.get('models').User;
-
-var user = User.build({ username: "test1@test1", password: "test", firstname: "test", lastname: "test" });
-
-console.log(user);
-
-user.save().complete(function (err) {
-    if(err) throw err;
-    else console.log("DATA SUCCESSFULLY INSERTED");
-});
-
-******************************************************************************/
