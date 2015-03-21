@@ -14,7 +14,7 @@ exports.route = {
                 limit: 10,
                 where: {UserId: userId}
             }).success(function(results) {
-                if(results === null || results === undefined) {
+                if(results == null || results == undefined) {
                     res.render('blog', {title: 'Blog', username: req.session.username});
                 }
                 else {

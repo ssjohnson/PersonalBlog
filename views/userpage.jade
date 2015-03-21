@@ -3,6 +3,9 @@ extends ./layout.jade
 block content
     .container
         h3 User Page For: #{username}
-        
+
         form(action="/newblog" method="get" id="newblogform")
             input.btn.btn-primary(type="Submit" Value="New Blog") 
+        
+        form(action="/delete" method="get" id="deleteuserform")
+            input.btn.btn-primary(type="Submit" Value="Delete Account") 

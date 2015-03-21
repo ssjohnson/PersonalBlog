@@ -1,0 +1,12 @@
+extends ./layout.jade
+
+block content
+    .container
+        p Are You Sure You Want To Permanently Delete Your Account?
+
+        form.form-horizontal(action="/delete" method="post" id="confirmdeleteform")
+            input.form-control.btn.btn-primary(type="Submit" value="Confirm")
+
+        form.form-horizontal(action="/userpage" method="get" id="canceldeleteform")
+            input.form-control.btn.btn-primary(type="Submit" value="Cancel")
+

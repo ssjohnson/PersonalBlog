@@ -52,6 +52,7 @@ var logout = require('./routes/logout.js');
 var blog = require('./routes/blog.js');
 var newblog = require('./routes/newblog.js');
 var user = require('./routes/user.js');
+var delete_account = require('./routes/deleteaccount.js');
 
 router.get('/', index.route);
 
@@ -78,6 +79,10 @@ router.get('/newblog', newblog.route.get);
 router.post('/newblog', newblog.route.post);
 
 router.get('/user/:userId', user.route.get);
+
+router.get('/delete', delete_account.route.get);
+
+router.post('/delete', delete_account.route.post);
 
 app.use('/', router);
 

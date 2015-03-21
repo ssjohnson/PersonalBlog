@@ -1,5 +1,6 @@
 var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
+var User_model = require('../models').User;
 
 exports.route = {
     get:
@@ -16,12 +17,17 @@ exports.route = {
             
             console.log('UN: ' + username + ' - PW: ' + password);
             
-            var User_model = require('../models').User;
-            
             var user = User_model
                     .find({ where: { username: username } })
+                    .catch( function(err) {
+                        throw err; 
+                        res.redirect('/');
+                    })
                     .complete( function(err, result) {
-                        if (err) throw err;
+                        if (err) { 
+                            throw err;
+                            res.redirect('/');
+                        }
                         else {
                             console.log("USER: " + result.username);
                             if(bcrypt.compareSync(password, result.password)) {
@@ -45,38 +51,3 @@ exports.route = {
                     });
         }
 }
-
-/***********************************************************************
-CGY
-
-OLD AUTHENTICATE PROCESS
-
-            req.getConnection(function (err, connection) {
-                connection.query('SELECT * FROM userlist WHERE username = ?',     
-                                 values, 
-                                 function(err, results) {
-                                    if (err) throw err;
-                                    if (results.length == 0) res.redirect('/');
-                                    else {
-                                        if(bcrypt.compareSync(password,                                                                 results[0].password)) 
-                                        {
-                                            console.log("MATCH: " + results);
-                                            req.session.username = username;
-                                            req.session.save();
-                                            res.render('userpage', 
-                                                       {title:'UserPage', 
-                                                        username:req.session.username
-                                                       }
-                                                      );
-                                        }
-                                        else {
-                                            console.log("NO MATCH");
-                                            res.redirect('/');
-                                        }
-                                    }
-                                });
-            });
-        
-------------------------------------------------------------------
-
-**************************************************************************/

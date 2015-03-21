@@ -100,3 +100,10 @@ I've been MIA for a month+. For a few reasons actually. My depression kicked up 
 So, today I got the new blog post page to enter line breaks. JQuery ftw! Took me a little while since I'm a bit out of practice, but we're getting there.  
   
 Gonna keep working tonight and we'll see where I get.
+
+###So Friends
+######3/20/15
+
+So, I've been gone for a while now. Still alive. Got the signup working proper, as well as adding a function to delete a user's account.
+
+--SSJ

@@ -27,7 +27,6 @@ exports.route = {
                 console.log('UN: ' + username + ' - PW: ' + password);
 
                 var hash = bcrypt.hashSync(password, salt);
-                var values = [username, hash, firstname, lastname];
                 
                 var user = null;
 

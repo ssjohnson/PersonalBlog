@@ -8,7 +8,7 @@ exports.route = {
              
             Post_Model.findAll({
                 order: [['id', 'DESC']],
-                limit: 10
+                limit: 30
             }).success(function(results) {
                 console.log(results);
                 if(results === null || results === undefined) {
