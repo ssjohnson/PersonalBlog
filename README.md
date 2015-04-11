@@ -9,7 +9,7 @@ So: 2 Options here:
 MongoDB - Use mongoose and passport to authenticate.
 MySQL - Figure out how to authenticate using MySQL and res.connection. I will probably do this.
 
---SSJ
+--Jay
 
 ###I did not mongo.
 ######12/17/14
@@ -33,7 +33,7 @@ Redis for Session storage?
 
 Oh, and I got the sessions working today too (redundancy ftw). That was easy though.
 
---SSJ
+--Jay
 
 ###Routes, Routes, Routes
 ######12/22/14
@@ -90,7 +90,7 @@ Angular? seems like it could work with this, but it seems like a serious underta
     
 etc. etc. Ill remember more as the day goes on. 
 
---SSJ
+--Jay
 
 ###Back Again.....Jay's Back
 ######2/21/15
@@ -106,7 +106,7 @@ Gonna keep working tonight and we'll see where I get.
 
 So, I've been gone for a while now. Still alive. Got the signup working proper, as well as adding a function to delete a user's account.
 
---SSJ
+--Jay
 
 ###Pagination
 ######4/11/15
@@ -114,3 +114,11 @@ So, I've been gone for a while now. Still alive. Got the signup working proper, 
 Got pages working (mostly) for the blog page. Haven't been working on this much lately. Pool Biz is starting to pick up, and that pays the bills.......for now.
 
 1 Love.
+
+As today progresses I also cleaned up my routes by compressing everything to /routes/index, that way I don't have 10 different vars for routes in app.js
+
+Fetty Wap - Trap Queen has been playing all day. Literally, I must have listened to it 50 times today. My life is in an odd place.
+
+Still cant figure out how to have escaped text and line breaks and keep them stored in DB at the same damn time. Damn you Jade!
+
+-Jay

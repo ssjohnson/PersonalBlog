@@ -42,47 +42,39 @@ app.use(body_parser.urlencoded({ extended: false }));
 
 var router = express.Router();
 
-var index = require('./routes/index.js');
-var about = require('./routes/about.js');
-var contact = require('./routes/contact.js');
-var login = require('./routes/login.js');
-var signup = require('./routes/signup.js');
-var userpage = require('./routes/userpage.js');
-var logout = require('./routes/logout.js');
-var blog = require('./routes/blog.js');
-var newblog = require('./routes/newblog.js');
-var user = require('./routes/user.js');
-var delete_account = require('./routes/deleteaccount.js');
+var routes = require('./routes');
 
-router.get('/', index.route);
+router.get('/', routes.mainpage);
 
-router.get('/blog/:page', blog.route.get);
+router.get('/blog', routes.blog.route.missingPageId);
 
-router.get('/about', about.route.get);
+router.get('/blog/:page', routes.blog.route.get);
 
-router.get('/contact', contact.route.get);
+router.get('/about', routes.about.route.get);
 
-router.get('/login', login.route.get);
+router.get('/contact', routes.contact.route.get);
 
-router.post('/login', login.route.post);
+router.get('/login', routes.login.route.get);
 
-router.get('/signup' , signup.route.get);
+router.post('/login', routes.login.route.post);
 
-router.post('/signup', signup.route.post);
+router.get('/signup' , routes.signup.route.get);
 
-router.get('/userpage', userpage.route.get);
+router.post('/signup', routes.signup.route.post);
 
-router.get('/logout', logout.route.get);
+router.get('/userpage', routes.userpage.route.get);
 
-router.get('/newblog', newblog.route.get);
+router.get('/logout', routes.logout.route.get);
 
-router.post('/newblog', newblog.route.post);
+router.get('/newblog', routes.newblog.route.get);
 
-router.get('/user/:userId', user.route.get);
+router.post('/newblog', routes.newblog.route.post);
 
-router.get('/delete', delete_account.route.get);
+router.get('/user/:userId', routes.user.route.get);
 
-router.post('/delete', delete_account.route.post);
+router.get('/delete', routes.delete_account.route.get);
+
+router.post('/delete', routes.delete_account.route.post);
 
 app.use('/', router);
 

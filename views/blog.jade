@@ -19,7 +19,8 @@ block content
                     li
                         if (previousPage)
                             a(href='/blog/#{previousPage}') Previous
-                        a(href='/blog/#{nextPage}') Next
+                        if (nextPage)
+                            a(href='/blog/#{nextPage}') Next
 
         else 
             p "No Posts To Show"

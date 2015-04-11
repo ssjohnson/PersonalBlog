@@ -17,10 +17,10 @@ exports.route = {
                 text: req.param('blogText'),
                 UserId: req.session.user.id,
                 author: req.session.user.username
-            }).success(function() {
+            }).then(function() {
                 console.log("Successfully Added!");
             }).complete(function(){ 
-                res.redirect('/blog');
+                res.redirect('/blog/1');
             });
         }
 }
