@@ -107,3 +107,10 @@ Gonna keep working tonight and we'll see where I get.
 So, I've been gone for a while now. Still alive. Got the signup working proper, as well as adding a function to delete a user's account.
 
 --SSJ
+
+###Pagination
+######4/11/15
+
+Got pages working (mostly) for the blog page. Haven't been working on this much lately. Pool Biz is starting to pick up, and that pays the bills.......for now.
+
+1 Love.

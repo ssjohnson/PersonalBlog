@@ -11,7 +11,7 @@ var sequelize = new Sequelize(config.database, config.user, config.password, {
 //AUTHENTICATE CONNECTION
 
 sequelize.authenticate().complete(function(err) { 
-    if(err){ throw err;}
+    if(err){ throw err; }
     else {console.log("CONNECTION ESTABLISHED");}
 });
 
@@ -29,12 +29,6 @@ models.forEach(function(model) {
     m.User.hasMany(m.Post);
 })(module.exports);
 
-module.exports.sequelize = sequelize;
+sequelize.sync({force:false});
 
-module.exports.init = function(sequelize) {
-    sequelize.sync({force:false}).complete(function (err) {
-    if (err) throw err;
-    else console.log("TABLES CREATED");
-});
-};
-    
+module.exports.sequelize = sequelize;

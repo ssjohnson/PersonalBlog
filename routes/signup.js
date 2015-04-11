@@ -2,7 +2,6 @@
 var User_Model = require('../models').User;
 var bcrypt = require('bcrypt');
 var salt = bcrypt.genSaltSync(10);
-var async = require('async');
 
 exports.route = {
     
@@ -31,6 +30,7 @@ exports.route = {
                 var user = null;
 
                 User_Model.create({ username: username, password: hash, firstname: firstname, lastname: lastname })
+                    .error( function (err) { throw err; } )
                     .then(
                         function(result) {
                             user = result;

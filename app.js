@@ -56,7 +56,7 @@ var delete_account = require('./routes/deleteaccount.js');
 
 router.get('/', index.route);
 
-router.get('/blog', blog.route.get);
+router.get('/blog/:page', blog.route.get);
 
 router.get('/about', about.route.get);
 

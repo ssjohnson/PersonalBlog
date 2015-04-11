@@ -26,7 +26,7 @@ html(lang='en')
                         li(class=title=='Home'?'active':undefined)
                             a(href='/') Home
                         li(class=title=='Blog'?'active':undefined)
-                            a(href='/blog') Blog
+                            a(href='/blog/1') Blog
                         li(class=title=='About Me'?'active':undefined)
                             a(href='/about') About
                         li(class=title=='Contact Me'?'active':undefined)
@@ -42,7 +42,7 @@ html(lang='en')
                                 a(href='/logout') Logout
         
     body
-        .container-fluid
+        .container.col-lg-12
             title #{title}
             .page-header    
                 h1(class="header") #{title}
